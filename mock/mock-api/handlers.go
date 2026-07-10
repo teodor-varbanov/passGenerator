@@ -4,7 +4,6 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strings"
 )
@@ -15,6 +14,10 @@ type encryptedPassword struct {
 	Password string `json:"password"`
 }
 
+type encryptedResponse struct {
+	EncryptedText string `json: "encryptedText"`
+}
+
 func encryptString(w http.ResponseWriter, r *http.Request) {
 	var password encryptedPassword
 
@@ -22,10 +25,14 @@ func encryptString(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 	}
 
-	encPass := sha256.Sum256([]byte(password.Password))
+	hexPass := sha256.Sum256([]byte(password.Password))
+	encPass := hex.EncodeToString(hexPass[:])
+	response := encryptedResponse{
+		EncryptedText: "BAMSCRT@" + encPass,
+	}
 
-	fmt.Fprintln(w, "Unencrypted password is: ", password.Password)
-	fmt.Fprintln(w, "Encrypted password is: "+"BAMSCRT@"+hex.EncodeToString(encPass[:]))
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(response)
 }
 
 func authenticationMiddleware(next http.HandlerFunc) http.HandlerFunc {

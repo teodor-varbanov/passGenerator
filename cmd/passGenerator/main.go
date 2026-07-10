@@ -6,11 +6,10 @@ import (
 	"os"
 )
 
-//the implemented mock api server expects the following: curl -X POST http://localhost:6969/rest/api/latest/encrypt -H "Authorization: Bearer very-secret-token"  -H "Content-Type: application/json"   -d '{"password":"mySecret123"}
+//to-do make it so the program, not the mock server returns the correct output, as it will be in production
+//to-do clean up and correct variable names
 //to-do change the contants to paramters given at command line or via a parameter file
-//to-do implement logic to exclude certain numbers based on acii table
 //to-do implement logic to exclude numbers based on provided input
-//to-do think about a way to make the distribution of numbers and letters better
 
 const ASCII_BEGIN = 33
 const ASCII_END = 126
