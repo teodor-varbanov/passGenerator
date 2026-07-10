@@ -28,7 +28,7 @@ func encryptString(w http.ResponseWriter, r *http.Request) {
 	hexPass := sha256.Sum256([]byte(password.Password))
 	encPass := hex.EncodeToString(hexPass[:])
 	response := encryptedResponse{
-		EncryptedText: "BAMSCRT@" + encPass,
+		EncryptedText: "BAMFAKE@" + encPass,
 	}
 
 	w.Header().Set("Content-Type", "application/json")

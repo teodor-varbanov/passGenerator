@@ -1,6 +1,10 @@
 package main
 
-import "math/rand/v2"
+import (
+	"fmt"
+	"math/rand/v2"
+	"strings"
+)
 
 func generateChar(min int, max int) string {
 
@@ -9,13 +13,13 @@ func generateChar(min int, max int) string {
 
 }
 
-func checkExclusions(char string, exclusions []string) bool {
-	if len(exclusions) == 0 {
+func checkExclusions(char string, exclude []string) bool {
+	if len(exclude) == 0 {
 		return false
 	} else {
 		var counter = 0
-		for _, ex := range exclusions {
-			if char == ex {
+		for _, ex := range exclude {
+			if char == strings.TrimSpace(ex) {
 				counter++
 			} else {
 				continue
@@ -29,19 +33,20 @@ func checkExclusions(char string, exclusions []string) bool {
 	}
 }
 
-func generatePassword(LENGHT int, exclusions []string) string {
+func generatePassword(LENGHT int, exclude []string) string {
 
 	var password string
 
 	for i := 1; i <= LENGHT; i++ {
 		char := generateChar(ASCII_BEGIN, ASCII_END)
 
-		if checkExclusions(char, exclusions) {
+		if checkExclusions(char, exclude) {
 			i--
 			continue
 		} else {
 			password += char
 		}
 	}
+	fmt.Println(password)
 	return password
 }

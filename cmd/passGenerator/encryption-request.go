@@ -22,7 +22,7 @@ func encRequest(customClient *http.Client, secret string, apiKey string) (*http.
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", "http://localhost:6969/rest/api/latest/encrypt", bytes.NewBuffer(jsonData))
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
 	if err != nil {
 		return nil, err
 	}
