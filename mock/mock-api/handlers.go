@@ -19,11 +19,6 @@ type encryptedResponse struct {
 	EncryptedText string `json:"encryptedText"`
 }
 
-// PasswordListID  = $PasswordListID
-// Title           = "North American Core Router 1"
-// UserName        = "narouter1"
-// Password        = "StenS-Lun#3$2^yc"
-
 type storedResponse struct {
 	PasswordListID string `json:"PasswordListID"`
 	Title          string `json:"Title"`
@@ -58,6 +53,7 @@ func storePassword(w http.ResponseWriter, r *http.Request) {
 
 	passwordStore[storeInfo.PasswordListID] = storeInfo
 
+	fmt.Fprintln(w, "----------- STORED PASSWORD: -----------")
 	fmt.Fprintln(w, storeInfo.Password)
 
 }
