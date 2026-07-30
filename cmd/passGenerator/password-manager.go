@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"net/http"
 	"time"
 )
@@ -64,9 +63,6 @@ func passStateRequest(customClient *http.Client, secret string, listID string, t
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Bearer "+"something")
 	req.Header.Set("User-Agent", "Go-HTTP-Client/1.0")
-
-	fmt.Printf("POST %s\n", stateUrl)
-	fmt.Printf("%s\n", jsonData)
 
 	return customClient.Do(req)
 

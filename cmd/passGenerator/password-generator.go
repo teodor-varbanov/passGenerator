@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math/rand/v2"
 	"strings"
 )
@@ -47,6 +46,5 @@ func generatePassword(LENGHT int, exclude []string) string {
 			password += char
 		}
 	}
-	fmt.Println(password)
 	return password
 }

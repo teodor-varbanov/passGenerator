@@ -29,8 +29,8 @@ func main() {
 	}
 
 	//pass state response
-
-	passStateResponse, err := passStateRequest(customClient(), secret, "123", "TITLE!", "DODO", "P@SSW0RD")
+	// the passStateRequest should be parameterized
+	passStateResponse, err := passStateRequest(customClient(), secret, "123", "TITLE!", "USER", "PLACEHOLDER")
 	if err != nil {
 		fmt.Printf("Could not make a request: %s\n", err)
 		os.Exit(1)
