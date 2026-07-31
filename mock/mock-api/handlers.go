@@ -12,7 +12,7 @@ import (
 const TOKEN = "very-secret-token"
 
 type encryptedPassword struct {
-	Password string `json:"password"`
+	Text string `json:"text"`
 }
 
 type encryptedResponse struct {
@@ -33,7 +33,7 @@ func encryptString(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 	}
 
-	hexPass := sha256.Sum256([]byte(password.Password))
+	hexPass := sha256.Sum256([]byte(password.Text))
 	encPass := hex.EncodeToString(hexPass[:])
 	response := encryptedResponse{
 		EncryptedText: "BAMFAKE@" + encPass,
