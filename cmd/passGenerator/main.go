@@ -28,21 +28,27 @@ func main() {
 		os.Exit(1)
 	}
 
-	//pass state response
-	// the passStateRequest should be parameterized
-	passStateResponse, err := passStateRequest(customClient(), secret, "123", "TITLE!", "USER", "PLACEHOLDER")
-	if err != nil {
-		fmt.Printf("Could not make a request: %s\n", err)
+	if err := setWinPassword(computername, username, secret); err != nil {
+		fmt.Printf("Could not set Windows password: %s\n", err)
 		os.Exit(1)
 	}
 
-	passStateBody, err := io.ReadAll(passStateResponse.Body)
-	if err != nil {
-		fmt.Printf("client: could not read response body: %s\n", err)
-		os.Exit(1)
-	}
+	// //pass state response
+	// // the passStateRequest should be parameterized
+	// passStateResponse, err := passStateRequest(customClient(), secret, "123", "TITLE!", "USER", "PLACEHOLDER")
+	// if err != nil {
+	// 	fmt.Printf("Could not make a request: %s\n", err)
+	// 	os.Exit(1)
+	// }
 
+	// passStateBody, err := io.ReadAll(passStateResponse.Body)
+	// if err != nil {
+	// 	fmt.Printf("client: could not read response body: %s\n", err)
+	// 	os.Exit(1)
+	// }
+
+	fmt.Println("secret is ", secret) //Remove when done for obvious reasons. To-do: after actual password state (or Vault) integration
 	fmt.Printf("%s\n", resBody)
-	fmt.Printf("%s\n", passStateBody)
+	// fmt.Printf("%s\n", passStateBody)
 
 }
