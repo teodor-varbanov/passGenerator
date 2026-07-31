@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math/rand/v2"
 	"strings"
 )
@@ -19,7 +18,7 @@ func checkExclusions(char string, exclude []string) bool {
 	} else {
 		var counter = 0
 		for _, ex := range exclude {
-			if char == strings.TrimSpace(ex) {
+			if char == strings.TrimSpace(ex) || char == "\"" || char == "'" || char == "\\" {
 				counter++
 			} else {
 				continue
@@ -47,6 +46,5 @@ func generatePassword(LENGHT int, exclude []string) string {
 			password += char
 		}
 	}
-	fmt.Println(password)
 	return password
 }
