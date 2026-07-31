@@ -9,7 +9,7 @@ import (
 )
 
 type passEncrypt struct {
-	Password string `json:"password"`
+	Text string `json:"text"`
 }
 
 type storedResponse struct {
@@ -21,7 +21,7 @@ type storedResponse struct {
 
 func encRequest(customClient *http.Client, secret string, apiKey string) (*http.Response, error) {
 	pass := passEncrypt{
-		Password: secret,
+		Text: secret,
 	}
 
 	jsonData, err := json.Marshal(pass)
